@@ -4,15 +4,12 @@ import {
   clearGallery,
   showLoader,
   hideLoader,
-  initLightbox,
 } from './js/render-functions.js';
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
-
-initLightbox();
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -28,7 +25,6 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  // Очищаємо перед новим запитом
   clearGallery();
   showLoader();
 
@@ -46,15 +42,14 @@ form.addEventListener('submit', async (event) => {
       createGallery(data.hits);
     }
   } catch (error) {
-    console.error('API Error:', error);   // ← Додаємо для діагностики
+    console.error('API Error:', error);
     iziToast.error({
       title: 'Помилка',
       message: 'Щось пішло не так. Спробуйте пізніше.',
       position: 'topRight',
     });
   } finally {
-    hideLoader();   // ← Це має спрацьовувати завжди
+    hideLoader();
+    form.reset();
   }
-
-  form.reset();
 });

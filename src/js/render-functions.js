@@ -3,11 +3,14 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 let lightbox = null;
 
-export function initLightbox() {
-  lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
+function getLightbox() {
+  if (!lightbox) {
+    lightbox = new SimpleLightbox('.gallery a', {
+      captionsData: 'alt',
+      captionDelay: 250,
+    });
+  }
+  return lightbox;
 }
 
 export function createGallery(images) {
@@ -41,15 +44,14 @@ export function createGallery(images) {
 
   gallery.insertAdjacentHTML('beforeend', markup);
 
-  if (lightbox) {
-    setTimeout(() => {
-      try {
-        lightbox.refresh();
-      } catch (e) {
-        // Ігноруємо помилку refresh
-      }
-    }, 300);
-  }
+  // Ініціалізація + refresh
+  setTimeout(() => {
+    try {
+      getLightbox().refresh();
+    } catch (e) {
+      console.warn('SimpleLightbox refresh warning');
+    }
+  }, 300);
 }
 
 export function clearGallery() {
