@@ -1,200 +1,100 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    margin: 0;
-    padding: 40px 20px;
-    min-height: 100vh;
-    color: #333;
-}
+/* src/css/styles.css */
 
 .container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    padding: 20px;
 }
 
-h1 {
-    text-align: center;
-    padding: 30px 20px 20px;
-    margin: 0;
-    background: #2c3e50;
+.form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.form input {
+    padding: 10px 15px;
+    font-size: 16px;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form button {
+    padding: 10px 20px;
+    background: #4a90e2;
     color: white;
-    font-size: 2.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-/* Навігація на index.html */
-nav ul {
+/* ЛОАДЕР */
+.loader {
+    display: none;
+    width: 50px;
+    height: 50px;
+    margin: 40px auto;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4a90e2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loader.visible {
+    display: block;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Галерея */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
 }
 
-nav a {
-    display: block;
-    padding: 18px 25px;
-    background: #f8f9fa;
-    color: #2c3e50;
-    text-decoration: none;
-    font-size: 1.1rem;
-    border-left: 5px solid #667eea;
-    transition: all 0.3s;
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: white;
 }
 
-nav a:hover {
-    background: #667eea;
-    color: white;
-    transform: translateX(10px);
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-/* Таймер */
-.timer-controls {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    padding: 30px 20px;
-    flex-wrap: wrap;
+.info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 12px;
+    background: #f9f9f9;
+    font-size: 14px;
 }
 
-#datetime-picker {
-    padding: 14px 18px;
-    font-size: 1.1rem;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    width: 320px;
-    outline: none;
-}
-
-#datetime-picker:focus {
-    border-color: #667eea;
-}
-
-button[data-start] {
-    padding: 14px 32px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    background: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button[data-start]:hover:not(:disabled) {
-    background: #2ecc71;
-    transform: translateY(-2px);
-}
-
-button[data-start]:disabled {
-    background: #95a5a6;
-    cursor: not-allowed;
-}
-
-/* Стилі таймера */
-.timer {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 20px 20px 40px;
-    flex-wrap: wrap;
-}
-
-.field {
+.info p {
+    margin: 0;
     text-align: center;
 }
 
-.value {
+.info span {
     display: block;
-    font-size: 3.5rem;
     font-weight: bold;
-    background: #2c3e50;
-    color: #fff;
-    padding: 15px 25px;
-    border-radius: 12px;
-    min-width: 110px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.label {
-    display: block;
-    margin-top: 10px;
-    font-size: 0.95rem;
-    color: #7f8c8d;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Форма промісів */
-.form {
-    max-width: 420px;
-    margin: 40px auto;
-    padding: 30px;
-}
-
-.form label {
-    display: block;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-}
-
-.form input[type="number"] {
-    width: 100%;
-    padding: 14px;
-    font-size: 1.1rem;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    margin-top: 8px;
-}
-
-fieldset {
-    border: 2px solid #ddd;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 25px;
-}
-
-legend {
-    font-weight: bold;
-    padding: 0 12px;
-    font-size: 1.1rem;
-}
-
-.form button[type="submit"] {
-    width: 100%;
-    padding: 16px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    background: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.form button[type="submit"]:hover {
-    background: #c0392b;
-    transform: translateY(-3px);
-}
-
-/* Адаптивність */
-@media (max-width: 600px) {
-    .timer {
-        gap: 15px;
-    }
-
-    .value {
-        font-size: 2.8rem;
-        min-width: 90px;
-    }
+    color: #333;
 }
